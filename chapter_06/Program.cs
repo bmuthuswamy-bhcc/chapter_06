@@ -16,29 +16,29 @@ namespace chapter_06 {
         public override string ToString() => $"{typeof(T)} : {this.value}";
     }
 
-    // Now illustrate inheritance
-    public abstract class Shape<T> {
-        public abstract T Area { get;  }
+    // Now illustrate inheritance and generic interfaces
+    public interface IShape<T> {
+        public T Area { get;  }
     }
 
-    public class Square : Shape<int> { // need to explicitly define type here
+    public class Square : IShape<int> { // need to explicitly define type here
         public int length { get; set; }
 
        public Square (int length) {
             this.length = length;
         }
 
-        public override int Area => this.length * this.length;
+        public int Area => this.length * this.length;
     }
 
-    public class Circle : Shape<double> {
+    public class Circle : IShape<double> {
         public double radius { get; set; }
 
         public Circle(double radius) {
             this.radius = radius;
         }
 
-        public override double Area => Math.PI * this.radius * this.radius;
+        public double Area => Math.PI * this.radius * this.radius;
     }
 
     class Program {
